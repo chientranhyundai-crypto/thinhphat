@@ -1,0 +1,15 @@
+PHASE 11 — FULL DEMO DATA
+All demo content marked with post meta _sa_demo_data=1
+Options: sa_demo_partners, sa_demo_numbers, sa_demo_videos, sa_demo_seeded
+
+REMOVE_DEMO_DATA (demo only — keeps real media/pages/schema):
+  wp --path=/var/www/web_siteauto_usr/data/www/web.siteauto.vn sa remove-demo
+
+Re-seed:
+  wp --path=... sa remove-demo
+  wp --path=... sa seed-demo
+
+Seed images directory: /tmp/sa-demo-assets
+Models use TP-* prefix (original DEMO names, not competitor SKUs).
+Partners are fictional monograms. Numbers labeled DEMO.
+Videos: thumbnail + play UI only (no fake YouTube URLs).

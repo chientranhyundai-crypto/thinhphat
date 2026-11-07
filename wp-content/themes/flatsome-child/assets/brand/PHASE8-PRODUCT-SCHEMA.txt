@@ -1,0 +1,33 @@
+PHASE 8 — PRODUCT SCHEMA (THỊNH PHÁT)
+Status: NEED_PRODUCT_DATA = YES
+Products created: 0 (intentionally — no fake models/specs/prices)
+
+Categories ready (product_cat):
+- ups-offline       → UPS Offline
+- ups-online        → UPS Online
+- ups-online-rack   → UPS Online Rack
+- ups-cong-nghiep   → UPS Công nghiệp
+- bien-tan          → Biến tần
+- pin-ac-quy        → Pin & Ắc quy
+
+Global attributes (Woo):
+- pa_thuong-hieu  Thương hiệu
+- pa_cong-suat    Công suất
+- pa_dien-ap      Điện áp
+
+Custom meta:
+- _sa_key_specs         Thông số chính (text)
+- _sa_datasheet_id      Media attachment ID (PDF)
+- _sa_price_on_request  yes|no → frontend “Liên hệ”
+
+Required fields per product:
+name, image, categories, brand, model/SKU, power, voltage,
+key_specs, short_description, description,
+price OR Liên hệ, CTA “NHẬN TƯ VẤN”
+
+Featured Products:
+- Shortcode [sa_ux_featured_products] stays dynamic Woo
+- When publish products exist → auto show up to 4 cards
+- Empty catalog → NEED_PRODUCT_DATA empty state
+
+Do NOT invent product names, models, specs, or prices.

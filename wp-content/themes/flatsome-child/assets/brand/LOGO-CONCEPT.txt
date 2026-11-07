@@ -1,0 +1,9 @@
+THỊNH PHÁT — Logo concept (Phase 4B)
+Status: MISSING_LOGO_ASSET — no production graphic logo shipped.
+
+Concept:
+- Monogram "TP" combined with a lightning bolt (tia sét).
+- Style: industrial / electrical / technology, premium B2B, minimal.
+- Palette: primary #064EA3, dark #082B57, accent #FFB000.
+- Deliverables needed: horizontal wordmark + TP icon / favicon.
+- Until assets are supplied, frontend uses clean text brand "THỊNH PHÁT".

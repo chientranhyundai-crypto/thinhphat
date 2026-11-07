@@ -1,0 +1,9 @@
+# Cache & temporary files
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/cache/
+*.log
+
+# OS generated files
+.DS_Store
+Thumbs.db

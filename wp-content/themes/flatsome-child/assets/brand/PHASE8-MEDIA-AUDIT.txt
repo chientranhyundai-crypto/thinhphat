@@ -1,0 +1,30 @@
+PHASE 8 MEDIA AUDIT (live)
+Date: 2026-09-22
+
+Homepage MISSING_* tokens: NONE (cleared — real images wired)
+
+Hero:     ID=43  https://web.siteauto.vn/wp-content/uploads/2026/09/thinhphat-hero-ups.jpg
+          (content uses -1024x576.jpg)
+About:    ID=44  https://web.siteauto.vn/wp-content/uploads/2026/09/thinhphat-about-facility.jpg
+          (content uses -1024x768.jpg)
+Project:  ID=51  https://web.siteauto.vn/wp-content/uploads/2026/09/thinhphat-project-main.jpg
+News:     ID=52  https://web.siteauto.vn/wp-content/uploads/2026/09/thinhphat-news-main.jpg
+Video:    ID=53  https://web.siteauto.vn/wp-content/uploads/2026/09/thinhphat-video-cover.jpg
+
+Category thumbnails:
+17 UPS Offline      thumb=45  thinhphat-cat-ups-offline.jpg
+18 UPS Online       thumb=46  thinhphat-cat-ups-online.jpg
+19 UPS Online Rack  thumb=47  thinhphat-cat-ups-rack.jpg
+20 UPS Công nghiệp  thumb=48  thinhphat-cat-ups-industrial.jpg
+21 Biến tần         thumb=49  thinhphat-cat-inverter.jpg
+22 Pin & Ắc quy     thumb=50  thinhphat-cat-battery.jpg
+
+Other Media Library:
+29 woocommerce-placeholder.webp
+
+Still placeholder (not product/media failure):
+- Partner logos (no licensed partner marks supplied)
+- Brand logo graphic (MISSING_LOGO_ASSET — text wordmark in use)
+
+Policy: no MASU assets imported or hotlinked.
+Working homepage images were NOT replaced in Phase 8.
