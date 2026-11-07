@@ -195,7 +195,7 @@ function sa_contact_page_shortcode( $atts ) {
 		<div class="sa-contact__grid">
 			<div class="sa-contact__info">
 				<p class="sa-eyebrow"><?php echo esc_html( $brand ); ?></p>
-				<h1 class="sa-contact__title">Liên hệ</h1>
+				<h1 class="sa-contact__title">Liên hệ với chúng tôi</h1>
 				<p class="sa-contact__company"><?php echo esc_html( $company ); ?></p>
 				<ul class="sa-contact__list">
 					<?php if ( $address ) : ?>
