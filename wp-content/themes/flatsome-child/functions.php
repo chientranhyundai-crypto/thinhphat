@@ -571,3 +571,74 @@ function sa_bo_luu_dien_term_link( $url, $term, $taxonomy ) {
 }
 add_filter( 'term_link', 'sa_bo_luu_dien_term_link', 10, 3 );
 
+/**
+ * Custom permalinks and rewrite rules for 'Bộ lưu điện Offline'.
+ * Changes /thiet-bi/<slug>/ to /bo-luu-dien-offline/<slug>/ exclusively for offline UPS products.
+ */
+function sa_bo_luu_dien_offline_rewrite() {
+	add_rewrite_rule( '^bo-luu-dien-offline/page/([0-9]{1,})/?$', 'index.php?product_cat=bo-luu-dien-offline&paged=$matches[1]', 'top' );
+	add_rewrite_rule( '^bo-luu-dien-offline/([^/]+)/?$', 'index.php?product=$matches[1]&post_type=product', 'top' );
+	add_rewrite_rule( '^bo-luu-dien-offline/?$', 'index.php?product_cat=bo-luu-dien-offline', 'top' );
+}
+add_action( 'init', 'sa_bo_luu_dien_offline_rewrite' );
+
+function sa_bo_luu_dien_offline_term_link( $url, $term, $taxonomy ) {
+	if ( 'product_cat' === $taxonomy && isset( $term->slug ) && 'bo-luu-dien-offline' === $term->slug ) {
+		return home_url( '/bo-luu-dien-offline/' );
+	}
+	return $url;
+}
+add_filter( 'term_link', 'sa_bo_luu_dien_offline_term_link', 10, 3 );
+
+function sa_bo_luu_dien_offline_product_link( $permalink, $post, $leavename = false ) {
+	if ( ! is_object( $post ) || 'product' !== $post->post_type ) {
+		return $permalink;
+	}
+	if ( has_term( 'bo-luu-dien-offline', 'product_cat', $post->ID ) ) {
+		$slug = $leavename ? '%postname%' : $post->post_name;
+		return home_url( '/bo-luu-dien-offline/' . $slug . '/' );
+	}
+	return $permalink;
+}
+add_filter( 'post_type_link', 'sa_bo_luu_dien_offline_product_link', 10, 3 );
+
+function sa_bo_luu_dien_offline_redirects() {
+	if ( is_admin() || wp_doing_ajax() ) {
+		return;
+	}
+
+	$req_uri  = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+	$req_path = wp_parse_url( $req_uri, PHP_URL_PATH );
+
+	if ( is_singular( 'product' ) ) {
+		global $post;
+		if ( ! $post || 'product' !== $post->post_type ) {
+			return;
+		}
+
+		$is_offline = has_term( 'bo-luu-dien-offline', 'product_cat', $post->ID );
+
+		if ( $is_offline ) {
+			// If accessed via /thiet-bi/..., 301 redirect to /bo-luu-dien-offline/...
+			if ( false !== strpos( $req_path, '/thiet-bi/' ) ) {
+				wp_safe_redirect( home_url( '/bo-luu-dien-offline/' . $post->post_name . '/' ), 301 );
+				exit;
+			}
+		} else {
+			// If a non-offline product was accessed via /bo-luu-dien-offline/..., 301 redirect to its normal link
+			if ( false !== strpos( $req_path, '/bo-luu-dien-offline/' ) ) {
+				wp_safe_redirect( get_permalink( $post->ID ), 301 );
+				exit;
+			}
+		}
+	} elseif ( is_product_category( 'bo-luu-dien-offline' ) ) {
+		// If category is accessed via /danh-muc-san-pham/bo-luu-dien/bo-luu-dien-offline/, 301 redirect to /bo-luu-dien-offline/
+		if ( false !== strpos( $req_path, '/danh-muc-san-pham/' ) ) {
+			wp_safe_redirect( home_url( '/bo-luu-dien-offline/' ), 301 );
+			exit;
+		}
+	}
+}
+add_action( 'template_redirect', 'sa_bo_luu_dien_offline_redirects', 1 );
+
+
