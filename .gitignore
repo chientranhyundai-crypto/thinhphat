@@ -4,6 +4,10 @@ wp-content/upgrade/
 wp-content/uploads/cache/
 *.log
 
+# All-in-One WP Migration backups (large files >100MB)
+wp-content/ai1wm-backups/
+*.wpress
+
 # OS generated files
 .DS_Store
 Thumbs.db

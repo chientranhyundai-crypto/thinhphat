@@ -641,4 +641,44 @@ function sa_bo_luu_dien_offline_redirects() {
 }
 add_action( 'template_redirect', 'sa_bo_luu_dien_offline_redirects', 1 );
 
+/**
+ * Custom permalink and rewrite rules for 'Bộ lưu điện 3 pha vào - 3 pha ra'.
+ * Changes /danh-muc-san-pham/bo-luu-dien/bo-luu-dien-3-pha-vao-3-pha-ra/ to /bo-luu-dien/bo-luu-dien-3-pha-vao-3-pha-ra/ exclusively for this category.
+ */
+function sa_bo_luu_dien_3pha3_rewrite() {
+	add_rewrite_rule( '^bo-luu-dien/bo-luu-dien-3-pha-vao-3-pha-ra/page/([0-9]{1,})/?$', 'index.php?product_cat=bo-luu-dien-3-pha-vao-3-pha-ra&paged=$matches[1]', 'top' );
+	add_rewrite_rule( '^bo-luu-dien/bo-luu-dien-3-pha-vao-3-pha-ra/?$', 'index.php?product_cat=bo-luu-dien-3-pha-vao-3-pha-ra', 'top' );
+	add_rewrite_rule( '^bo-luu-dien-3-pha-vao-3-pha-ra/page/([0-9]{1,})/?$', 'index.php?product_cat=bo-luu-dien-3-pha-vao-3-pha-ra&paged=$matches[1]', 'top' );
+	add_rewrite_rule( '^bo-luu-dien-3-pha-vao-3-pha-ra/?$', 'index.php?product_cat=bo-luu-dien-3-pha-vao-3-pha-ra', 'top' );
+}
+add_action( 'init', 'sa_bo_luu_dien_3pha3_rewrite' );
+
+function sa_bo_luu_dien_3pha3_term_link( $url, $term, $taxonomy ) {
+	if ( 'product_cat' === $taxonomy && isset( $term->slug ) && 'bo-luu-dien-3-pha-vao-3-pha-ra' === $term->slug ) {
+		return home_url( '/bo-luu-dien/bo-luu-dien-3-pha-vao-3-pha-ra/' );
+	}
+	return $url;
+}
+add_filter( 'term_link', 'sa_bo_luu_dien_3pha3_term_link', 10, 3 );
+
+function sa_bo_luu_dien_3pha3_redirects() {
+	if ( is_admin() || wp_doing_ajax() ) {
+		return;
+	}
+
+	$req_uri  = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+	$req_path = wp_parse_url( $req_uri, PHP_URL_PATH );
+
+	if ( is_product_category( 'bo-luu-dien-3-pha-vao-3-pha-ra' ) ) {
+		$target_path = '/bo-luu-dien/bo-luu-dien-3-pha-vao-3-pha-ra/';
+		// If category is accessed via /danh-muc-san-pham/... or without parent slug /bo-luu-dien-3-pha-vao-3-pha-ra/, 301 redirect to /bo-luu-dien/bo-luu-dien-3-pha-vao-3-pha-ra/
+		if ( false !== strpos( $req_path, '/danh-muc-san-pham/' ) || untrailingslashit( $req_path ) === '/bo-luu-dien-3-pha-vao-3-pha-ra' ) {
+			wp_safe_redirect( home_url( $target_path ), 301 );
+			exit;
+		}
+	}
+}
+add_action( 'template_redirect', 'sa_bo_luu_dien_3pha3_redirects', 1 );
+
+
 
